@@ -1,0 +1,23 @@
+{
+  "name": "secgin/vakif-bank-vpos",
+  "description": "VakıfBank Sanal Pos Entegrasyon Kitaplığı",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "YG\\VakifBankVPos\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Secgin"
+    }
+  ],
+  "require": {
+    "ext-curl": "*",
+    "ext-simplexml": "*",
+    "ext-json": "*"
+  },
+  "exclude-directories": [
+    "documents"
+  ]
+}
