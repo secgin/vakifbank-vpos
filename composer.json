@@ -1,5 +1,5 @@
 {
-  "name": "secgin/vakif-bank-vpos",
+  "name": "secgin/vakifbank-vpos",
   "description": "VakıfBank Sanal Pos Entegrasyon Kitaplığı",
   "license": "MIT",
   "autoload": {
