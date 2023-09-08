@@ -35,6 +35,12 @@ class EnrollmentControlRequest extends AbstractRequest implements EnrollmentCont
                                   string $purchaseAmount, string $currency, string $brandName,
                                   string $successUrl, string $failureUrl): self
     {
+        $amountArr = explode('.', $purchaseAmount);
+        if (count($amountArr) === 1)
+            $purchaseAmount .= '.00';
+        else if (strlen($amountArr[1]) === 1)
+            $purchaseAmount .= '0';
+
         $instance = new self();
         $instance->verifyEnrollmentRequestId = $verifyEnrollmentRequestId;
         $instance->pan = $pan;
