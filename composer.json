@@ -19,7 +19,8 @@
   },
   "archive": {
     "exclude": [
-      "documents"
+      "documents",
+      "documents/*"
     ]
   }
 }
