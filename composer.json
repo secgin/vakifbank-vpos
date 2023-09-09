@@ -5,10 +5,7 @@
   "autoload": {
     "psr-4": {
       "YG\\VakifBankVPos\\": "src/"
-    },
-    "exclude-from-classmap": [
-      "/documents"
-    ]
+    }
   },
   "authors": [
     {

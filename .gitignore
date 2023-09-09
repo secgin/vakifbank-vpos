@@ -3,5 +3,6 @@
 composer.lock
 vendor/
 public/
+documents/
 test_server/
 .htaccess
