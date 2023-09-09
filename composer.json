@@ -17,7 +17,9 @@
     "ext-simplexml": "*",
     "ext-json": "*"
   },
-  "exclude-directories": [
-    "documents"
-  ]
+  "archive": {
+    "exclude": [
+      "/documents"
+    ]
+  }
 }
