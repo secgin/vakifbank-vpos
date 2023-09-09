@@ -60,7 +60,7 @@ class  EnrollmentControlRequestHandler extends AbstractRequestHandler
             elseif ($status == 'N')
             {
                 $responseData['version'] = $data['VERes']['Version'];
-                $responseData['actualBrand'] = $data['VERes']['ACTUALBRAND'];
+                $responseData['actualBrand'] = $data['VERes']['ActualBrand'];
             }
             elseif ($status == 'E')
             {
