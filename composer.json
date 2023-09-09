@@ -19,7 +19,7 @@
   },
   "archive": {
     "exclude": [
-      "/documents"
+      "documents"
     ]
   }
 }
