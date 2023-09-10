@@ -2,9 +2,7 @@
 
 namespace YG\VakifBankVPos;
 
-use YG\VakifBankVPos\Authentication\EnrollmentControlRequest;
 use YG\VakifBankVPos\Authentication\EnrollmentControlRequestHandler;
-use YG\VakifBankVPos\Sale\SaleRequest;
 use YG\VakifBankVPos\Sale\SaleRequestHandler;
 
 final class DependenceContainer implements Abstracts\DependenceContainer
@@ -24,9 +22,7 @@ final class DependenceContainer implements Abstracts\DependenceContainer
     {
         $this->set('requestService', CurlRequestService::class);
         $this->set('enrollmentControl', EnrollmentControlRequestHandler::class);
-        $this->set(EnrollmentControlRequest::class, EnrollmentControlRequestHandler::class);
         $this->set('sale', SaleRequestHandler::class);
-        $this->set(SaleRequest::class, SaleRequestHandler::class);
     }
 
     public function set(string $key, $objectOrClass): void

@@ -54,13 +54,13 @@ class  EnrollmentControlRequestHandler extends AbstractRequestHandler
                 $responseData['acsUrl'] = $data['Message']['VERes']['ACSUrl'];
                 $responseData['termUrl'] = $data['Message']['VERes']['TermUrl'];
                 $responseData['md'] = $data['Message']['VERes']['MD'];
-                $responseData['actualBrand'] = $data['Message']['VERes']['ActualBrand'];
+                $responseData['actualBrand'] = $data['Message']['VERes']['ACTUALBRAND'];
                 $responseData['verifyEnrollmentRequestId'] = $data['VerifyEnrollmentRequestId'];
             }
             elseif ($status == 'N')
             {
                 $responseData['version'] = $data['VERes']['Version'];
-                $responseData['actualBrand'] = $data['VERes']['ActualBrand'];
+                $responseData['actualBrand'] = $data['VERes']['ACTUALBRAND'];
             }
             elseif ($status == 'E')
             {

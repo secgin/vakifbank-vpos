@@ -44,4 +44,10 @@ class Config implements Abstracts\Config
         $this->items['mpiServiceUrl'] = $mpiServiceUrl;
         return $this;
     }
+
+    public function useMockRequestService(): self
+    {
+        $this->items['useMockRequestService'] = true;
+        return $this;
+    }
 }
