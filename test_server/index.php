@@ -31,14 +31,15 @@ if (isset($_POST['code']))
         'ErrorMessage' => ''
     ];
 
-    $postUrl = 'http://localhost/vakif-bank-vpos/success.php';
+    $postUrl = $_POST['SuccessUrl'];
     if ($code != '1')
     {
         $postData['Status'] = 'N';
         $postData['ErrorCode'] = '2023';
         $postData['ErrorMessage'] = 'Şifre yanlış';
-        $postUrl = 'http://localhost/vakif-bank-vpos/fail.php';
+        $postUrl = $_POST['FailUrl'];
     }
+
 
     $formFields = '';
     foreach ($postData as $key => $value)
@@ -59,6 +60,8 @@ else
     <form action="" method="post">
         <h1>Doğrulama kodunuz giriniz</h1>
         <input type="text" name="code"/>
+        <input type="hidden" name="SuccessUrl" value="<?php echo $_POST['SuccessUrl'] ?>">
+        <input type="hidden" name="FailUrl" value="<?php echo $_POST['FailUrl'] ?>">
         <button type="submit">Gönder</button>
     </form>
 <?php } ?>
