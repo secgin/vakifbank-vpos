@@ -13,4 +13,5 @@ use YG\VakifBankVPos\Abstracts\Sale\SaleResponse;
  */
 interface VPosInterface
 {
+    public function getConfig(): Config;
 }

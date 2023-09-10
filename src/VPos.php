@@ -3,6 +3,7 @@
 namespace YG\VakifBankVPos;
 
 use Exception;
+use YG\VakifBankVPos\Abstracts\Config;
 use YG\VakifBankVPos\Abstracts\Request;
 use YG\VakifBankVPos\Abstracts\Response;
 use YG\VakifBankVPos\Abstracts\VPosInterface;
@@ -21,6 +22,11 @@ class VPos implements VPosInterface
 
         if ($config->get('useMockRequestService'))
             $this->container->set('requestService', MockCurlRequestService::class);
+    }
+
+    public function getConfig(): Config
+    {
+        return $this->config;
     }
 
     /**

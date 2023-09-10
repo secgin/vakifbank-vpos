@@ -16,6 +16,12 @@ class Config implements Abstracts\Config
         return new self($config);
     }
 
+    public function set(string $key, $value): Abstracts\Config
+    {
+        $this->items[$key] = $value;
+        return $this;
+    }
+
     public function get(string $key): string
     {
         return $this->items[$key] ?? '';
