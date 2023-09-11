@@ -30,6 +30,7 @@ if (isset($_POST['code']))
         'ErrorCode' => '',
         'ErrorMessage' => ''
     ];
+    $postData = array_merge($postData, $_POST);
 
     $postUrl = $_POST['SuccessUrl'];
     if ($code != '1')
@@ -59,7 +60,7 @@ else
 
 $formFields = '';
 foreach ($_POST as $key => $value)
-    $formFields .= '<input type="text" name="' . $key . '" value="' . $value . '">';
+    $formFields .= '<input type="hidden" name="' . $key . '" value="' . $value . '">';
 
 ?>
     <form action="" method="post">
