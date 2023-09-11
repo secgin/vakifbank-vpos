@@ -56,12 +56,16 @@ if (isset($_POST['code']))
 }
 else
 {
+
+$formFields = '';
+foreach ($_POST as $key => $value)
+    $formFields .= '<input type="text" name="' . $key . '" value="' . $value . '">';
+
 ?>
     <form action="" method="post">
         <h1>Doğrulama kodunuz giriniz</h1>
         <input type="text" name="code"/>
-        <input type="hidden" name="SuccessUrl" value="<?php echo $_POST['SuccessUrl'] ?>">
-        <input type="hidden" name="FailUrl" value="<?php echo $_POST['FailUrl'] ?>">
+        <?php echo $formFields; ?>
         <button type="submit">Gönder</button>
     </form>
 <?php } ?>
