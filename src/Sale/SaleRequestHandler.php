@@ -18,7 +18,7 @@ class SaleRequestHandler extends AbstractRequestHandler
 <MerchantId>{$request->getMerchantId()}</MerchantId>
 <Password>{$request->getMerchantPassword()}</Password>
 <TerminalNo>{$request->getTerminalNo()}</TerminalNo>
-<Pan>{$request->getPan()}}</Pan>
+<Pan>{$request->getPan()}</Pan>
 <Expiry>20{$request->getExpiry()}</Expiry>
 <CurrencyAmount>{$request->getCurrencyAmount()}</CurrencyAmount>
 <CurrencyCode>{$request->getCurrencyCode()}</CurrencyCode>
