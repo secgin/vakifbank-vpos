@@ -15,8 +15,8 @@ composer require secgin/vakifbank-vpos
 $config = Config::create()
     ->merchantId('merchantId')
     ->password('password')
-    ->mpiServiceUrl('https://3dsecure.vakifbank.com.tr:4443/MPIAPI/MPI_Enrollment.aspx')
-    ->serviceUrl('https://onlineodeme.vakifbank.com.tr:4443/VposService/v3/Vposreq.aspx');
+    ->successUrl('')
+    ->serviceUrl('');
 
 $vPos = new VPos($config);
 
@@ -26,9 +26,8 @@ $request = EnrollmentControlRequest::create(
     'son kullanma tarihi (yymm)',
     'tutar',
     '949',
-    '100',
-    'success url',
-    'fail url');
+    '100');
+    
 $result = $vPos->enrollmentControl($request);
 
 if ($result->isSuccess())
@@ -50,21 +49,20 @@ else
 
 ### Satış İşlemi
 ```php
-$authenticationResponse = new AuthenticationResponse();
-$authenticationResponse->assign($_POST);
+$authenticationResult = AuthenticationResult::create($_POST);
 
-if ($authenticationResponse->successAuth())
+if ($authenticationResult->successAuth())
 {
     $saleRequest = SaleRequest::create(
         'Sale',
         'terminal no',
-        $authenticationResponse->getPan(),
-        $authenticationResponse->getExpiry(),
-        $authenticationResponse->getPurchAmount(),
-        $authenticationResponse->getPurchCurrency(),
-        $authenticationResponse->getCavv(),
-        $authenticationResponse->getEci(),
-        $authenticationResponse->getVerifyEnrollmentRequestId(),
+        $authenticationResult->getPan(),
+        $authenticationResult->getExpiry(),
+        $authenticationResult->getPurchAmount(),
+        $authenticationResult->getPurchCurrency(),
+        $authenticationResult->getCavv(),
+        $authenticationResult->getEci(),
+        $authenticationResult->getVerifyEnrollmentRequestId(),
         $_SERVER['REMOTE_ADDR'],
         '0');
         

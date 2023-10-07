@@ -2,5 +2,5 @@
 .idea/*
 composer.lock
 vendor/
-public/
+demo/
 .htaccess

@@ -4,27 +4,29 @@ namespace YG\VakifBankVPos\Abstracts;
 
 abstract class AbstractResponse implements Response
 {
-    protected bool $success = true;
+    protected bool $success = false;
 
     protected ?string $errorCode = null;
 
     protected ?string $errorMessage = null;
 
-    public function setError(string $errorCode, string $errorMessage)
-    {
-        $this->errorCode = $errorCode;
-        $this->errorMessage = $errorMessage;
-        $this->success = false;
-    }
+    protected ?array $result = null;
 
-    public function assign(array $data): void
+    protected function __construct(HttpResult $httpResult)
     {
-        foreach ($data as $key => $value)
+        if ($httpResult->isSuccess() and $httpResult->getRawResult() != '')
         {
-            $key = lcfirst($key);
-            if (property_exists($this, $key))
+            $result = $this->xmlToArray($httpResult->getRawResult());
+
+            if ($result === false)
             {
-                $this->{$key} = $value ?? '';
+                $this->success = false;
+                $this->errorMessage = 'Banka tarafından geçersiz bir yanıt alındı.';
+            }
+            else
+            {
+                $this->success = true;
+                $this->result = $result;
             }
         }
     }
@@ -44,5 +46,33 @@ abstract class AbstractResponse implements Response
     {
         return $this->errorMessage;
     }
+
+    public function getResult(): ?array
+    {
+        return $this->result;
+    }
     #endregion
+
+    /**
+     * @return array|bool
+     */
+    final protected function xmlToArray(string $xmlData)
+    {
+        try
+        {
+            $xml = @simplexml_load_string($xmlData);
+            $json = @json_encode($xml);
+            return @json_decode($json, true);
+        } catch (\Exception $e)
+        {
+            return false;
+        }
+    }
+
+    final protected function setError(string $errorCode, string $errorMessage)
+    {
+        $this->errorCode = $errorCode;
+        $this->errorMessage = $errorMessage;
+        $this->success = false;
+    }
 }

@@ -4,7 +4,8 @@
   "license": "MIT",
   "autoload": {
     "psr-4": {
-      "YG\\VakifBankVPos\\": "src/"
+      "YG\\VakifBankVPos\\": "src/",
+      "App\\VakifBankVPosDemo\\": "demo/src/"
     }
   },
   "authors": [

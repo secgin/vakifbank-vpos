@@ -2,7 +2,7 @@
 
 namespace YG\VakifBankVPos\Abstracts;
 
-interface Response
+interface HttpResult
 {
     public function isSuccess(): bool;
 
@@ -10,5 +10,5 @@ interface Response
 
     public function getErrorMessage(): ?string;
 
-    public function getResult(): ?array;
+    public function getRawResult(): ?string;
 }

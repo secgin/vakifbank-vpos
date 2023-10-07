@@ -2,13 +2,28 @@
 
 namespace YG\VakifBankVPos;
 
+/**
+ * @method Config merchantId(string $merchantId)
+ * @method Config password(string $password)
+ * @method Config successUrl(string $successUrl)
+ * @method Config failUrl(string $failUrl)
+ * @method Config activeTestMode()
+ */
 class Config implements Abstracts\Config
 {
     private array $items = [];
 
+    private array $methods = [
+        'merchantId',
+        'password',
+        'successUrl',
+        'failUrl'
+    ];
+
     private function __construct(array $config)
     {
         $this->items = $config;
+        $this->loadServices();
     }
 
     public static function create(array $config = []): self
@@ -27,33 +42,43 @@ class Config implements Abstracts\Config
         return $this->items[$key] ?? '';
     }
 
-    public function merchantId(string $merchantId): self
+    public function __call($name, $arguments)
     {
-        $this->items['merchantId'] = $merchantId;
-        return $this;
+        if ($name == 'activeTestMode')
+        {
+            $this->set('testMode', true);
+            $this->loadTestServices();
+            return $this;
+        }
+
+        if (in_array($name, $this->methods) === false)
+            throw new \Exception('Method not found!');
+
+        if (count($arguments) === 0)
+            return $this->get($name);
+
+        return $this->set($name, $arguments[0]);
     }
 
-    public function password(string $password): self
+    private function loadServices(): void
     {
-        $this->items['password'] = $password;
-        return $this;
+        $mpiServiceUrl = 'https://3dsecure.vakifbank.com.tr:4443/MPIAPI/MPI_Enrollment.aspx';
+        $serviceUrl = 'https://onlineodeme.vakifbank.com.tr:4443/VposService/v3/Vposreq.aspx';
+        $inquiryServiceUrl = 'https://onlineodeme.vakifbank.com.tr:4443/UIService/';
+
+        $this->set('mpiServiceUrl', $mpiServiceUrl);
+        $this->set('serviceUrl', $serviceUrl);
+        $this->set('inquiryServiceUrl', $inquiryServiceUrl);
     }
 
-    public function serviceUrl(string $serviceUrl): self
+    private function loadTestServices(): void
     {
-        $this->items['serviceUrl'] = $serviceUrl;
-        return $this;
-    }
+        $mpiServiceUrl = 'https://3dsecuretest.vakifbank.com.tr:4443/MPIAPI/MPI_Enrollment.aspx';
+        $serviceUrl = 'https://onlineodemetest.vakifbank.com.tr:4443/VposService/v3/Vposreq.aspx';
+        $inquiryServiceUrl = 'https://onlineodemetest.vakifbank.com.tr:4443/UIService/';
 
-    public function mpiServiceUrl(string $mpiServiceUrl): self
-    {
-        $this->items['mpiServiceUrl'] = $mpiServiceUrl;
-        return $this;
-    }
-
-    public function useMockRequestService(): self
-    {
-        $this->items['useMockRequestService'] = true;
-        return $this;
+        $this->set('mpiServiceUrl', $mpiServiceUrl);
+        $this->set('serviceUrl', $serviceUrl);
+        $this->set('inquiryServiceUrl', $inquiryServiceUrl);
     }
 }
