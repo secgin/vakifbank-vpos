@@ -11,7 +11,7 @@ class SaleHandler extends AbstractHandler
     public function handle(Sale $request): Response
     {
         $xml = <<<OOD
-<TransactionType>{$request->getTransactionType()}</TransactionType>
+<TransactionType>Sale</TransactionType>
 <MerchantId>{$this->config->get('merchantId')}</MerchantId>
 <Password>{$this->config->get('password')}</Password>
 <TerminalNo>{$request->getTerminalNo()}</TerminalNo>

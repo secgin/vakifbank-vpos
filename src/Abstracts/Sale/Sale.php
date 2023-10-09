@@ -4,8 +4,6 @@ namespace YG\VakifBankVPos\Abstracts\Sale;
 
 interface Sale
 {
-    public function getTransactionType(): ?string;
-
     public function getTerminalNo(): ?string;
 
     public function getPan(): ?string;

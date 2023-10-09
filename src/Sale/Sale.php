@@ -6,8 +6,6 @@ use YG\VakifBankVPos\Abstracts\Sale\Sale as SaleInterface;
 
 class Sale implements SaleInterface
 {
-    private ?string $transactionType = null;
-
     private ?string $terminalNo = null;
 
     private ?string $pan = null;
@@ -32,29 +30,16 @@ class Sale implements SaleInterface
 
     private ?string $orderDescription = null;
 
-    public static function create(?string $transactionType, ?string $terminalNo, ?string $pan, ?string $expiry,
-                                  ?string $currencyAmount, ?string $currencyCode, ?string $cavv, ?string $eci,
-                                  ?string $mpiTransactionId, ?string $clientIp, ?string $transactionDeviceSource,
-                                  ?string $orderId = null, ?string $orderDescription = null): Sale
+    public static function create(?string $terminalNo, ?string $pan, ?string $expiry, ?string $currencyAmount,
+                                  ?string $currencyCode, ?string $cavv, ?string $eci, ?string $mpiTransactionId,
+                                  ?string $clientIp, ?string $transactionDeviceSource, ?string $orderId = null,
+                                  ?string $orderDescription = null): Sale
     {
 
         if (strpos($currencyAmount, '.') === false)
-        {
-            $currencyAmount = substr($currencyAmount, 0, strlen($currencyAmount) - 2) . '.' .
-                substr($currencyAmount, strlen($currencyAmount) - 2);
-        }
-        else if (strlen(explode('.', $currencyAmount)[1]) === 1)
-        {
-
-            $amountArr = explode('.', $currencyAmount);
-            if (count($amountArr) === 1)
-                $currencyAmount .= '.00';
-            else if (strlen($amountArr[1]) === 1)
-                $currencyAmount .= '0';
-        }
+            $currencyAmount .= '.00';
 
         $request = new self();
-        $request->transactionType = $transactionType;
         $request->terminalNo = $terminalNo;
         $request->pan = $pan;
         $request->expiry = $expiry;
@@ -68,11 +53,6 @@ class Sale implements SaleInterface
         $request->orderId = $orderId;
         $request->orderDescription = $orderDescription;
         return $request;
-    }
-
-    public function getTransactionType(): ?string
-    {
-        return $this->transactionType;
     }
 
     public function getTerminalNo(): ?string
