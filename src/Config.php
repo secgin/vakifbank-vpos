@@ -4,6 +4,7 @@ namespace YG\VakifBankVPos;
 
 /**
  * @method Config merchantId(string $merchantId)
+ * @method Config username(string $username)
  * @method Config password(string $password)
  * @method Config successUrl(string $successUrl)
  * @method Config failUrl(string $failUrl)
@@ -15,6 +16,7 @@ class Config implements Abstracts\Config
 
     private array $methods = [
         'merchantId',
+        'username',
         'password',
         'successUrl',
         'failUrl'
