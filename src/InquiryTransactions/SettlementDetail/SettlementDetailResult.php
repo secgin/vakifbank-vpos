@@ -54,7 +54,7 @@ class SettlementDetailResult extends AbstractInquiryResponse implements Settleme
             {
                 foreach ($item['CustomItems'] as $customItem)
                 {
-                    if ($customItem['Name'] == 'CardHolderName')
+                    if (isset($customItem['Name']) and $customItem['Name'] == 'CardHolderName')
                     {
                         $paymentTransaction->cardHolderName = $customItem['Value'];
                         break;
