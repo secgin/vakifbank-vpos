@@ -7,11 +7,6 @@
       "YG\\VakifBankVPos\\": "src/"
     }
   },
-  "autoload-dev": {
-    "psr-4": {
-      "App\\VakifBankVPosDemo\\": "demo/src/"
-    }
-  },
   "authors": [
     {
       "name": "Secgin"

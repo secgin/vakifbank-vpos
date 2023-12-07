@@ -54,7 +54,6 @@ $authenticationResult = AuthenticationResult::create($_POST);
 if ($authenticationResult->successAuth())
 {
     $saleRequest = SaleRequest::create(
-        'Sale',
         'terminal no',
         $authenticationResult->getPan(),
         $authenticationResult->getExpiry(),

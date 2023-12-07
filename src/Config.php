@@ -6,6 +6,7 @@ namespace YG\VakifBankVPos;
  * @method Config merchantId(string $merchantId)
  * @method Config username(string $username)
  * @method Config password(string $password)
+ * @method Config terminalNo(string $terminalNo)
  * @method Config successUrl(string $successUrl)
  * @method Config failUrl(string $failUrl)
  * @method Config activeTestMode()
@@ -18,6 +19,7 @@ class Config implements Abstracts\Config
         'merchantId',
         'username',
         'password',
+        'terminalNo',
         'successUrl',
         'failUrl'
     ];
