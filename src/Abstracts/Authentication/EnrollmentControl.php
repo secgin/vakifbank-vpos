@@ -19,4 +19,8 @@ interface EnrollmentControl
     public function getSessionInfo(): ?string;
 
     public function getInstallmentCount(): ?int;
+
+    public function getSuccessUrl(): string;
+
+    public function getFailureUrl(): string;
 }

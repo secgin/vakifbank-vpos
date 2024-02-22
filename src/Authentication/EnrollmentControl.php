@@ -31,7 +31,8 @@ final class EnrollmentControl implements EnrollmentControlInterface
     }
 
     public static function create(string $verifyEnrollmentRequestId, string $pan, string $expiryDate,
-                                  string $purchaseAmount, string $currency, string $brandName): self
+                                  string $purchaseAmount, string $currency, string $brandName, string $successUrl,
+                                  string $failureUrl): self
     {
         $amountArr = explode('.', $purchaseAmount);
         if (count($amountArr) === 1)
@@ -46,6 +47,8 @@ final class EnrollmentControl implements EnrollmentControlInterface
         $instance->purchaseAmount = $purchaseAmount;
         $instance->currency = $currency;
         $instance->brandName = $brandName;
+        $instance->successUrl = $successUrl;
+        $instance->failureUrl = $failureUrl;
         return $instance;
     }
 
@@ -99,5 +102,15 @@ final class EnrollmentControl implements EnrollmentControlInterface
     public function getInstallmentCount(): ?int
     {
         return $this->installmentCount;
+    }
+
+    public function getSuccessUrl(): string
+    {
+        return $this->successUrl;
+    }
+
+    public function getFailureUrl(): string
+    {
+        return $this->failureUrl;
     }
 }

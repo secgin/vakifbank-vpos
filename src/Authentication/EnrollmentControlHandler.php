@@ -20,8 +20,8 @@ final class  EnrollmentControlHandler extends AbstractHandler
             'Currency' => $request->getCurrency(),
             'BrandName' => $request->getBrandName(),
             'SessionInfo' => $request->getSessionInfo(),
-            'SuccessUrl' => $this->config->get('successUrl'),
-            'FailureUrl' => $this->config->get('failUrl')
+            'SuccessUrl' => $request->getSuccessUrl(),
+            'FailureUrl' => $request->getFailureUrl()
         ];
         if ($request->getInstallmentCount() > 1)
             $data['InstallmentCount'] = $request->getInstallmentCount();
